@@ -234,7 +234,7 @@ def main():
         classify_btn = st.button('🔍 開始分類', type='primary', use_container_width=True)
 
         if classify_btn:
-            message = st.session_state.test_msg
+            # message 已經是從 text_area 返回的值
             if not message:
                 st.warning('⚠️ 請輸入訊息內容')
             else:

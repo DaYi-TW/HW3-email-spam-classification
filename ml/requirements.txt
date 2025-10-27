@@ -1,0 +1,20 @@
+# Core ML Libraries
+scikit-learn>=1.3.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Web UI
+streamlit>=1.28.0
+
+# NLP (optional - uncomment if needed)
+# nltk>=3.8.0
+
+# Model Persistence
+joblib>=1.3.0
+
+# Additional utilities
+requests>=2.31.0

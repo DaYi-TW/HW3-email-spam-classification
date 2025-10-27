@@ -180,64 +180,61 @@ def main():
     left, right = st.columns([2.5, 1.5])
 
     with left:
-        st.markdown('### 📝 輸入訊息')
+        st.markdown('###  輸入訊息')
         
         # Initialize session state
-        if 'test_msg' not in st.session_state:
-            st.session_state['test_msg'] = ''
-        
-        message = st.text_area(
-            '請輸入郵件或簡訊內容:', 
-            height=200, 
-            placeholder='在此輸入或貼上訊息內容...',
-            label_visibility='collapsed',
-            value=st.session_state['test_msg'],
-            key='message_input'
-        )
+        if 'message_text' not in st.session_state:
+            st.session_state['message_text'] = ''
 
-        st.markdown('')
-        
-        # Example messages
+        # 範例訊息
         with st.expander("💡 試試範例訊息"):
             st.markdown("**🚨 垃圾郵件範例**")
             col_spam1, col_spam2 = st.columns(2)
+
             with col_spam1:
                 if st.button("🎁 中獎通知", use_container_width=True, key='spam1'):
-                    st.session_state['test_msg'] = "Dear user,\nYou've been selected as our lucky winner! Click below to claim your $1,000 Amazon gift card now.\n\n[Claim Reward Now]\n\nHurry! This offer expires in 24 hours.\n\nNote: You must complete the survey to receive your reward."
-                    st.rerun()
+                    st.session_state.message_text = "Dear user,\nYou've been selected as our lucky winner! Click below to claim your $1,000 Amazon gift card now.\n\n[Claim Reward Now]\n\nHurry! This offer expires in 24 hours.\n\nNote: You must complete the survey to receive your reward."
                 if st.button("⚠️ 假銀行警告", use_container_width=True, key='spam2'):
-                    st.session_state['test_msg'] = "Dear Customer,\nWe have detected unusual activity in your bank account. Please verify your information immediately to restore access.\n\nClick here to confirm your account: [Fake Bank Link]\n\nThank you for your prompt attention.\n\n— Security Department"
-                    st.rerun()
+                    st.session_state.message_text = "Dear Customer,\nWe have detected unusual activity in your bank account. Please verify your information immediately to restore access.\n\nClick here to confirm your account: [Fake Bank Link]\n\nThank you for your prompt attention.\n\n— Security Department"
+
             with col_spam2:
                 if st.button("💰 投資詐騙", use_container_width=True, key='spam3'):
-                    st.session_state['test_msg'] = "Hi there,\nYou can now make $10,000 per week from the comfort of your home!\n\nOur automated crypto trading bot guarantees 99% accuracy. Start with just $250 today.\n\n[Join Now]"
-                    st.rerun()
-                if st.button("� 工作詐騙", use_container_width=True, key='spam4'):
-                    st.session_state['test_msg'] = "We're hiring remote workers now!\nNo experience needed — just an internet connection.\n\nClick here to apply: [Suspicious Link]\n\nLimited positions available!"
-                    st.rerun()
-            
+                    st.session_state.message_text = "Hi there,\nYou can now make $10,000 per week from the comfort of your home!\n\nOur automated crypto trading bot guarantees 99% accuracy. Start with just $250 today.\n\n[Join Now]"
+                if st.button("💼 工作詐騙", use_container_width=True, key='spam4'):
+                    st.session_state.message_text = "We're hiring remote workers now!\nNo experience needed — just an internet connection.\n\nClick here to apply: [Suspicious Link]\n\nLimited positions available!"
+
             st.markdown("---")
             st.markdown("**✅ 正常郵件範例**")
             col_ham1, col_ham2 = st.columns(2)
+
             with col_ham1:
                 if st.button("📅 會議提醒", use_container_width=True, key='ham1'):
-                    st.session_state['test_msg'] = "Hi team,\nJust a quick reminder that our Project Alpha sync is scheduled for tomorrow at 10 AM in Meeting Room B.\n\nAgenda:\n- Review current milestones\n- Discuss upcoming release\n- Assign QA testing tasks\n\nThanks,\nSarah"
-                    st.rerun()
+                    st.session_state.message_text = "Hi team,\nJust a quick reminder that our Project Alpha sync is scheduled for tomorrow at 10 AM in Meeting Room B.\n\nAgenda:\n- Review current milestones\n- Discuss upcoming release\n- Assign QA testing tasks\n\nThanks,\nSarah"
                 if st.button("📦 訂單確認", use_container_width=True, key='ham2'):
-                    st.session_state['test_msg'] = "Dear Mr. Lee,\nThank you for shopping with us!\n\nYour order #48327 has been successfully placed.\nEstimated delivery date: November 2, 2025\n\nYou can track your shipment [here].\n\nBest regards,\nThe Store Team"
-                    st.rerun()
+                    st.session_state.message_text = "Dear Mr. Lee,\nThank you for shopping with us!\n\nYour order #48327 has been successfully placed.\nEstimated delivery date: November 2, 2025\n\nYou can track your shipment [here].\n\nBest regards,\nThe Store Team"
+
             with col_ham2:
                 if st.button("🦷 預約通知", use_container_width=True, key='ham3'):
-                    st.session_state['test_msg'] = "Hello,\nThis is to confirm your dental checkup appointment with Dr. Chen on Monday, October 30 at 3:00 PM.\n\nLocation: SmileCare Clinic, 2nd Floor, Main Building\n\nPlease arrive 10 minutes early.\n\n— SmileCare Clinic Team"
-                    st.rerun()
+                    st.session_state.message_text = "Hello,\nThis is to confirm your dental checkup appointment with Dr. Chen on Monday, October 30 at 3:00 PM.\n\nLocation: SmileCare Clinic, 2nd Floor, Main Building\n\nPlease arrive 10 minutes early.\n\n— SmileCare Clinic Team"
                 if st.button("🧾 HR 通知", use_container_width=True, key='ham4'):
-                    st.session_state['test_msg'] = "Dear all,\nWe've updated our annual leave policy effective January 2026.\n\nKey changes include:\n- Unused leave can now be carried over up to 10 days.\n- Leave requests must be submitted at least one week in advance.\n\nPlease review the updated policy on the HR portal.\n\nRegards,\nHR Department"
-                    st.rerun()
+                    st.session_state.message_text = "Dear all,\nWe've updated our annual leave policy effective January 2026.\n\nKey changes include:\n- Unused leave can now be carried over up to 10 days.\n- Leave requests must be submitted at least one week in advance.\n\nPlease review the updated policy on the HR portal.\n\nRegards,\nHR Department"
+        
+        st.markdown('')
+        
+        # text_area 使用 value 而不是 key 綁定
+        message = st.text_area(
+            '請輸入郵件或簡訊內容:',
+            height=200,
+            placeholder='在此輸入或貼上訊息內容...',
+            label_visibility='collapsed',
+            value=st.session_state.message_text
+        )
         
         st.markdown('---')
         classify_btn = st.button('🔍 開始分類', type='primary', use_container_width=True)
 
         if classify_btn:
+            message = st.session_state.test_msg
             if not message:
                 st.warning('⚠️ 請輸入訊息內容')
             else:
